@@ -32,8 +32,98 @@ void ABaseCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
-int32 ABaseCharacter::GetHealth()
+void ABaseCharacter::Init(FName RowName, UDataTable* DT)
+{
+
+}
+
+FString ABaseCharacter::GetName()
+{
+	return CharacterDate.Name;
+}
+
+int32 ABaseCharacter::GetMaxHealth()
+{
+	return CharacterDate.Health;
+}
+
+int32 ABaseCharacter::GetCurrentHealth()
 {
 	return Health;
 }
+
+bool ABaseCharacter::LoseHealth(int32 Damage, EDamageType Type)
+{
+
+	if (bDead)
+		return true;
+
+	switch (Type)
+	{
+
+	case EDamageType::Physical:
+		Health -= (Damage * (1 - CharacterDate.PhysicalArmor* 0.15f));
+		break;
+	case EDamageType::Magical:
+		Health -= (Damage * (1 - CharacterDate.MagicalArmor * 0.15f));
+		break;
+	default:
+		UE_LOG(LogTemp,Error£¬TEXT("UNKNOWN DAMAGETYPE!!!"));
+		break;
+	}
+	
+	if (Health<=0)
+	{
+		bDead = true;
+		Dead();
+		return true;
+	}
+	return false;
+}
+
+bool ABaseCharacter::IsDead()
+{
+	return bDead;
+}
+
+int32 ABaseCharacter::GetDamageMin()
+{
+	return CharacterDate.DamageMin;
+}
+
+int32 ABaseCharacter::GetDamageMax()
+{
+	return CharacterDate.DamageMax;
+}
+
+int32 ABaseCharacter::GetPhysicalArmor()
+{
+	return CharacterDate.PhysicalArmor;
+}
+
+int32 ABaseCharacter::GetMagicalArmor()
+{
+	return CharacterDate.MagicalArmor;
+}
+
+float ABaseCharacter::GetAttackCoolDownTime()
+{
+	return CharacterDate.AttackCoolDownTime;
+}
+
+int32 ABaseCharacter::GetSpeed()
+{
+	return CharacterDate.Speed;
+}
+
+EDamageType ABaseCharacter::GetDamageType()
+{
+	return CharacterDate.DamageType;
+}
+
+TSubclassOf<ABaseCharacter> ABaseCharacter::GetBPClass()
+{
+	return CharacterDate.BPClass;
+}
+
 
