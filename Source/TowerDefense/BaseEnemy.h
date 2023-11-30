@@ -6,6 +6,7 @@
 #include "BaseCharacter.h"
 #include "BaseEnemy.generated.h"
 
+
 USTRUCT(BlueprintType)
 struct FEnemyProperty : public FTableRowBase
 {

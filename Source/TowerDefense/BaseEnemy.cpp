@@ -2,6 +2,10 @@
 
 
 #include "BaseEnemy.h"
+#include "GameFramework/CharacterMovementComponent.h"
+
+
+
 
 
 
@@ -11,7 +15,7 @@ void ABaseEnemy::Init(FName RowName, UDataTable* DT)
 	CharacterDate = EnemyDate.CharacterProperty;
 	Health = CharacterDate.Health;
 
-
+	GetCharacterMovement()->MaxWalkSpeed = GetSpeed();
 }
 
 int32 ABaseEnemy::GetValue()
