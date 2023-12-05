@@ -27,55 +27,59 @@ void ABaseTower::Tick(float DeltaTime)
 
 void ABaseTower::Init(FName RowName, UDataTable* DT)
 {
+	TowerData = *DT->FindRow<FtowerProperty>(RowName, FString(""));
+	Level = 1;
 }
 
 int32 ABaseTower::GetTowerLevel()
 {
-	return int32();
+	return Level;
 }
 
 int32 ABaseTower::GetDamageMin()
 {
-	return int32();
+	return TowerData.DamageMin[Level-1];
 }
 
 int32 ABaseTower::GetDamageMax()
 {
-	return int32();
+	return TowerData.DamageMax[Level-1];
 }
 
 int32 ABaseTower::GetAttackRange()
 {
-	return int32();
+	return TowerData.AttackRange[Level-1];
 }
 
 int32 ABaseTower::GetNextCost()
 {
-	return int32();
+	if (Level == 4)
+		return 0;
+	return TowerData.Cost[Level];
 }
 
 float ABaseTower::GetAttackCoolDownTime()
 {
-	return 0.0f;
+	return TowerData.AttackCoolDownTime[Level-1];
 }
 
 UStaticMesh* ABaseTower::GetStaticMesh()
 {
-	return nullptr;
+	return TowerData.StaticMeshes[Level-1];
 }
 
 USkeletalMesh* ABaseTower::GetSkeletalMesh()
 {
-	return nullptr;
+	return TowerData.SkeletalMeshes[Level-1];
 }
 
 UAnimationAsset* ABaseTower::GetAnim()
 {
-	return nullptr;
+	return TowerData.Animations[Level-1];
 }
 
 EDamageType ABaseTower::GetDamageType()
 {
-	return EDamageType();
+	return TowerData.DamageType;
 }
 

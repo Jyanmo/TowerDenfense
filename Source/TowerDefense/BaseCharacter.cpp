@@ -68,7 +68,7 @@ bool ABaseCharacter::LoseHealth(int32 Damage, EDamageType Type)
 		Health -= (Damage * (1 - CharacterDate.MagicalArmor * 0.15f));
 		break;
 	default:
-		//UE_LOG(LogTemp,Error£¬TEXT("UNKNOWN DAMAGETYPE!!!"));
+		UE_LOG(LogTemp,Error,TEXT("UNKNOWN DAMAGETYPE!!!"));
 		break;
 	}
 	
