@@ -31,6 +31,10 @@ public:
 	TArray<USkeletalMesh*> SkeletalMeshes;
 	UPROPERTY(BlueprintReadOnly,EditAnywhere)
 	TArray<UAnimationAsset*> Animations;
+	UPROPERTY(BlueprintReadOnly,EditAnywhere)
+	TSubclassOf<ABaseTower>BPClass;
+	UPROPERTY(BlueprintReadOnly,EditAnywhere)
+	FString Name;
 };
 
 
