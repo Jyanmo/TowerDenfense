@@ -46,6 +46,11 @@ int32 ABaseTower::GetDamageMax()
 	return TowerData.DamageMax[Level-1];
 }
 
+int32 ABaseTower::RandomDamage()
+{
+	return FMath::RandRange(GetDamageMin(),GetDamageMax());
+}
+
 int32 ABaseTower::GetAttackRange()
 {
 	return TowerData.AttackRange[Level-1];
@@ -81,5 +86,22 @@ UAnimationAsset* ABaseTower::GetAnim()
 EDamageType ABaseTower::GetDamageType()
 {
 	return TowerData.DamageType;
+}
+
+bool ABaseTower::IsEnemyAttackable(ABaseEnemy* Enemy)
+{
+	if (Enemy&&!Enemy->IsDead()&&(GetAttackRange()>=(Enemy->GetActorLocation()-GetActorLocation()).Length()))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+float ABaseTower::GetProJectileSpeed()
+{
+	return TowerData.ProjectileSpeed;
 }
 

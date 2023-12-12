@@ -34,7 +34,11 @@ public:
 	UPROPERTY(BlueprintReadOnly,EditAnywhere)
 	TSubclassOf<ABaseTower>BPClass;
 	UPROPERTY(BlueprintReadOnly,EditAnywhere)
+	float ProjectileSpeed;
+	UPROPERTY(BlueprintReadOnly,EditAnywhere)
 	FString Name;
+
+
 };
 
 
@@ -73,6 +77,8 @@ public:
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int32 GetDamageMax();
 	UFUNCTION(BlueprintCallable, BlueprintPure)
+	int32 RandomDamage();
+	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int32 GetAttackRange();
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	int32 GetNextCost();
@@ -86,5 +92,8 @@ public:
 	UAnimationAsset* GetAnim();
 	UFUNCTION(BlueprintCallable, BlueprintPure)
 	EDamageType GetDamageType();
-
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	bool IsEnemyAttackable(ABaseEnemy* Enemy);
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	float GetProJectileSpeed();
 };
